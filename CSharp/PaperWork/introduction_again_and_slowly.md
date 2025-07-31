@@ -4,7 +4,7 @@ Now that you know it exists we can build upon that and actually get to coding. \
 There is a lot of theory at the start of C#. But once you grasp on the basics, there is nothing more and everything just behaves the same way.
 
 ## Your first app
-In your first app we want to get the computer print some output
+In your first app we want to get the computer print some output.
 ```csharp
 public static void Main(string[] args) {
     int a = 2;
@@ -17,7 +17,7 @@ public static void Main(string[] args) {
 Okay that ain't much but it's an honest start.
 
 ## Your first algorithm
-Lets create a sorting algorithm that sorts 4 values
+Lets create a sorting algorithm that sorts 4 values.
 ```csharp
 public static void Main(string[] args) {
     int a = 5;
@@ -93,11 +93,11 @@ public static void Main(string[] args) {
 ```
 This might seem chaotic at first so lets break it down.
 
-First we randomly by hand create an array
+First we randomly by hand create an array.
 ```csharp
 int[] arr = [4, 3, 5, 2, 1];
 ```
-Next we copy the swap `if a > b` that we used before and make it work with array.
+Next we copy the swap `if a > b` that we used before and make it work with an array.
 ```csharp
 int[] arr = [4, 3, 5, 2, 1];
 
@@ -107,7 +107,7 @@ if (arr[0] > arr[0 + 1]) {
     arr[0 + 1] = swap;
 }
 ```
-Now lets see what is for doing
+Now lets see what is the `for` doing.
 ```csharp
 for (int i = 0; i < 5; i++) {
     // The for can seem a little hard to read but all we care about is the 5 there.
@@ -116,13 +116,13 @@ for (int i = 0; i < 5; i++) {
     // 0, 1, 2, 3, 4 -> Which is 5 repetitions, which means that the for makes the same amount of repetitions as the number said.
 }
 ```
-We can therefore read the for as this and ignore the other text
+We can therefore read the `for` as this and ignore the other text.
 ```csharp
 for (5){
 
 }
 
-// so
+// can be read as
 
 repeat (5 times){
 
@@ -157,7 +157,7 @@ for (int n = 0; n < arr.Length - 1; n++) {
     }
 }
 ```
-We need to keep swapping them as long as there is something to swap. Therefore we add a surrounding `for` which repeats the sort process .Length times.
+We need to keep swapping them as long as there is something to swap. Therefore we add a surrounding `for` which repeats the sort process `.Length` times.
 ```csharp
 int[] arr = [4, 3, 5, 2, 1];
 

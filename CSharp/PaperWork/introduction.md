@@ -1,7 +1,7 @@
 # Basics
 - Programming is about automation
   - We don't want to do something -> we tell the computer how to do it automatically
-- The code in c# starts its execution in the Main method
+- The code in C# starts its execution in the Main method
   - From there the execution continues down line by line
   - There should only be one command on each line
     - Command is what ends with `;`
@@ -108,7 +108,7 @@ public class SugarPacket {
   }
 }
 ```
-So now you know what can be done using some basic c# features. Now lets break them down one by one.
+So now you know what can be done using some basic C# features. Now lets break them down one by one.
 
 After each "chapter" you can come back here and see how much more you understand what is going on in the above. :)
 \
@@ -116,13 +116,13 @@ After each "chapter" you can come back here and see how much more you understand
 \
 \
 PLEASE READ THIS:\
-Before we continue, please note the naming convention of c#.
+Before we continue, please note the naming convention of C#.
 
 Naming convention is the "Rule" on how to name things. Violating naming convention causes worse readability of your code.\
-The naming convention of c# is as follows:
-- camelCase -> start with lower case letter and every word inside starts with UPPER case letter
-- PascalCase -> start with UPPER case letter and every word inside starts with UPPER case letter
-- snake_case -> lower cased with `_` between all words (this is not used in c#)
+The naming convention of C# is as follows:
+- camelCase -> starts with a lower case letter and every word inside starts with a UPPER case letter
+- PascalCase -> starts with a UPPER case letter and every word inside starts with a UPPER case letter
+- snake_case -> lower cased with `_` between all words (this is not used in C#)
 ```csharp
 private int someValue = 0; // camelCase for private variables (variable should never be public)
 public int SomeProperty {get; set;} = 1; // PascalCase for public properties (property should never be private)
@@ -246,25 +246,27 @@ There are also many [operators](https://learn.microsoft.com/en-us/dotnet/csharp/
   - You will use the arithmetic and Comparison the most and then !, && and ||. You will meet the others very rarely.
   - Many operators support compound assignment expression (`a op= b` which is `a = a op b`)
     - For example `a += b` is equivalent to `a = a + b`
+    - For example `a |= b` is equivalent to `a = a | b`
 ## Data Types
 ### Whole Numbers
 Most used variable is ``int``.  When working with big numbers sometimes ``long`` needs to be used.\
 Notice that you can write ``_`` in the number, which is only for readability and is not changing the behavior of the number itself.
 ```csharp
-// int (Int32) -> integer
+// int (Int32) -> Integer
 // from -2,147,483,648 to 2,147,483,647 (inclusive)
 int a = 1;
 int b = -15;
 int c = 1_000;
-// long (Int64) -> long integer
+// long (Int64) -> Long integer
 // from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 (inclusive)
 long d = 20_000_000_000;
 ```
 ### Decimal Numbers
-There are 3 types for floating point number.
+There are 3 types of floating point number.
 - `float` is used the most
 - `double`  is advised to be used when doing more complicated Math operation
 - `decimal` should be used when working with money
+
 Each type needs its character to specify which one we want to choose.
 - f -> float
 - d -> double
@@ -283,10 +285,10 @@ double c = 2.4d;
 decimal d = 5.8m;
 ```
 ### Character and String
-`char` is basically `int` in c#. We can use it interchangeably.
+`char` is basically `int` in C#. We can use it interchangeably.
 `string` cannot be mutated. Once it is initialized it can never be changed. It only can be initialized with a new value, while the old one is lost.
 ```csharp
-// char (Char) -> a single Character
+// char (Char) -> Single Character
 char a = 'a';
 char b = 'A' + 1; // B
 char c = 65; // A
@@ -301,7 +303,7 @@ d = d + " is something else now" // this string is something else now
 ### Other Whole Numbers
 A few types you can encounter. For the beginning you won't probably need them. There are a few more, but lets keep things simple.
 ```csharp
-// short (Int16) -> short integer
+// short (Int16) -> Short integer
 // from -32,768 to 32,767 (inclusive)
 short a = -51;
 // ushort (UInt16) -> Unsigned short integer (only positive numbers)
@@ -388,7 +390,7 @@ int a = 2;
 int b = 3;
 (a, b) = (b, a);
 ```
-Commonly with arrays, the for or foreach is utilized.
+Commonly with arrays, the `for` or `foreach` is utilized.
 ```csharp
 int[] array = [5, 4, 8, 9, 6];
 for (int i = 0; i < array.Length; i++){
@@ -470,13 +472,13 @@ Can be one of two types:
 int a = 1;
 float b = 2.2f;
 char c = 'z';
-Vector vector = new Vector(); // if created as struct, it becomes behaving like a simple type
+Vector vector = new Vector(); // if created as "struct", it becomes behaving like a simple type
 
 // somewhere in the middle
 string s = "The behavior of a string is a bit difficult to explain.";
-string s2 = "String in general is a reference data type, but c# remade it into simple type.";
+string s2 = "String in general is a reference data type, but C# remade it into simple type.";
 string s3 = "Because of the confusion, string was made immutable. Which makes him only usable as a simple data type.";
-string s4 = "Therefore be careful and always use "string". Never use "String"";
+string s4 = "Therefore be careful and always use 'string'. Never use 'String'";
 
 // reference types
 Regex regex = new Regex(); // exists in a library provided by Microsoft
@@ -505,7 +507,7 @@ We can also use them without a keyword. (Almost never used but is possible.)
 // variable with the name "a" doesn't exist here
 
 {
-  // seconds goes here
+  // second code goes here
   // both bodies are executed
   // this can be used to seal of variables from each other
   int a = 2; // this will not throw a Compile Error as any encapsulating body {} doesn't know about any variable named "a"
@@ -528,6 +530,7 @@ Or with the `=>`
 public void SayHello() => Console.WriteLine("Hello");
 
 // is an equivalent of
+
 public void SayHello() {
   Console.WriteLine("Hello");
 }
@@ -548,7 +551,7 @@ if (myApples == yourApples + 2) { // if I have 2 more apples than you
   myApples--; // I will give you one apple
   yourApples++;
   Console.WriteLine("We both have the same amount of apples!");
-} else if (yourApples == myApples + 2) { // if I don't have 2 more apples than you BUT you have 2 move apples than I have
+} else if (yourApples == myApples + 2) { // if I don't have 2 more apples than you BUT you have 2 more apples than I have
   yourApples--; // you will give one apple to me
   myApples++;
   Console.WriteLine("We both have the same amount of apples!");
@@ -626,7 +629,7 @@ for (int i = 0 /*value initialization*/; i < 5 /*condition check*/; i++ /*end-of
 ```
 Like this without the comments.
 ```csharp
-for (int i = 0 ; i < 5 ; i++ ) {
+for (int i = 0; i < 5; i++) {
   Console.WriteLine(i);
 }
 ```
@@ -701,7 +704,7 @@ foreach (int number in arr){
     - the data type that the method return
     - `void` if nothing is returned
   - followed by its Name
-    - by conventions of c# the Name must be in PascalCase having the first letter capitalized
+    - by conventions of C# the Name must be in PascalCase having the first letter capitalized
   - parameters
     - after name we put `()` in which we specify parameters
     - the Method is not required to use any parameters and can be parameterless `()`
@@ -709,19 +712,24 @@ foreach (int number in arr){
       - data type (which data type the parameter has to be)
       - local name (doesn't need to match the name from where it is called, name of the parameter only applies to the value in the body of this method)
 
-Parameterless method that doesn't return anything
+Parameterless method that doesn't return anything.
 ```csharp
 public static void SayHello() {
   Console.WriteLine("Hello!");
 }
 ```
-Method with a parameter "name" of the type "string" which doesn't return anything
+Method with a parameter "name" of the type "string" which doesn't return anything.
 ```csharp
 public static void SayHelloTo(string name) { // example: if name == "John"
   Console.WriteLine("Hello " + name + "!"); // then this prints: "Hello John!"
 }
 ```
-Method that deals damage to the player
+The call would look like this.
+```csharp
+SayHello(); // prints "Hello!"
+SayHelloTo("John"); // prints "Hello John!"
+```
+Method that deals damage to the player.
 ```csharp
 public void TakeDamage(int damage) {
   this.hp -= damage;
@@ -731,7 +739,7 @@ public void TakeDamage(int damage) {
   }
 }
 ```
-In full context would look like this:
+In a full context would look like this:
 ```csharp
 public class Player {
   private int hp;
@@ -750,20 +758,20 @@ public class Player {
 
 }
 ```
-The call would look like this
+The call would look like this.
 ```csharp
 public static void Main(string args[]) {
   Player player = new Player();
   player.TakeDamage(10);
 }
 ```
-Method that sums two double numbers, returns the sum
+Method that sums two double numbers, returns the sum.
 ```csharp
 public static double Add(double a, double b) {
   return a + b;
 }
 ```
-Methods can also have array of any variable types as parameters, as "array" is just another reference data type
+Methods can also have array of any variable types as parameters, as "array" is just another reference data type.
 ```csharp
 public static double Sum1(double[] arr) {
   double sum = 0d;
@@ -774,7 +782,7 @@ public static double Sum1(double[] arr) {
   return sum;
 }
 ```
-Method can use any amount of arguments without putting them into an array manually before calling the method
+Method can use any amount of arguments without putting them into an array manually before calling the method.
 ```csharp
 public static double Sum2(params double[] arr) {
   double sum = 0d;
@@ -785,7 +793,7 @@ public static double Sum2(params double[] arr) {
   return sum;
 }
 ```
-The call would look like this
+The call would look like this.
 ```csharp
 public static void Main(string args[]) {
   double d1 = 2.0d;
@@ -800,7 +808,7 @@ public static void Main(string args[]) {
 
 ### Class
 - is always a `reference type` (is an `object`)
-- used to pack things together
+Used to pack things together.
 ```csharp
 public class Player {
   private string name;
@@ -808,7 +816,7 @@ public class Player {
   private Weapon weapon;
 }
 ```
-- used to tidy the code and put it where it belongs
+Used to tidy the code and put it where it belongs.
 ```csharp
 public class Player {
   private string name;
@@ -834,7 +842,7 @@ public class Weapon {
     return true;
   }
 
-  public void Shoot() {
+  private void Shoot() { // This method is private, so only Weapon can call it. That means it only gets called from TryShoot and only if there is enough ammo.
     ammo--;
   }
 }
@@ -848,22 +856,22 @@ public class Player {
 
 }
 
-// but it can inherit a class
+// but it can inherit from a class
 public class Player : Entity {
 
 }
 
-// or it can inherit interfaces
+// or it can inherit from interfaces
 public class Player : IDamageable, IMessageable, ITargetable {
 
 }
 
-// or it can inherit both, but at most 1 class
+// or it can inherit from both, but at most 1 class
 public class Player : Entity, IDamageable, IMessageable, ITargetable {
 
 }
 ```
-Probably will be used like this
+Probably would be used like this.
 ```csharp
 // inherits IDamageable, ITargetable
 public class Entity : IDamageable, ITargetable {
@@ -875,12 +883,13 @@ public class Player : Entity, IMessageable {
 
 }
 
+// inheriting Entity makes it inherit both IDamageable and ITargetable automatically
 public class NPC : Entity {
 
 }
 // Explanation:
-// Entity is expected to be targetable and damageable which means player can damage anything that is an entity and can target anything that is an entity
-// Because player inherits from it, that means the player can damage other players and can target other players
-// But also NPC inherits from Entity which means player can also damage NPC as well as NPC can damage player
-// Because player inherits IMessageable, it means we can send a message to a player, but we cannot send a message to an NPC because NPC doesn't inherit IMessageable
+// Entity is expected to be targetable and damageable which means player can damage anything that is an "Entity" and can target anything that is an "Entity"
+// Because "Player" inherits from "Entity", it means the "Player" can damage other "Player"s and can target other "Player"s
+// But also "NPC" inherits from "Entity" which means "Player" can also damage "NPC" as well as "NPC" can damage "Player"
+// Because "Player" inherits "IMessageable", it means we can send a message to a "Player", but we cannot send a message to an "NPC" because an "NPC" doesn't inherit "IMessageable"
 ```
