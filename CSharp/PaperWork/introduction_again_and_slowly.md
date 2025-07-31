@@ -77,11 +77,11 @@ public static void Main(string[] args) {
     int[] arr = [4, 3, 5, 2, 1];
 
     for (int i = 0; i < arr.Length - 1; i++) {
-        for (int n = 0; n < arr.Length - i - 1; n++) {
-            if (arr[n] > arr[n + 1]) {
-                int swap = arr[n];
-                arr[n] = arr[n + 1];
-                arr[n + 1] = swap;
+        for (int j = 0; j < arr.Length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int swap = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = swap;
             }
         }
     }
@@ -132,7 +132,7 @@ Next we create for and can notice that we must not exceed the bound with the ind
 That is the reason why I first created the `if a > b` and now I continue with the inner loop (inner `for`)\
 Now for the inner for:
 ```csharp
-for (int n = 0; n < arr.Length - 1; n++) {
+for (int j = 0; j < arr.Length - 1; j++) {
     // because we index "arr[0]" and "arr[0+1]" we must subtract 1 from the length
     // note that there are 2 ways of for that you will ever use, first being the one with "arr.Length" repetitions and the second being "arr.Length - 1" repetitions
     // even tho there are infinitely many possible things you can code, you will never use anything else in the for
@@ -149,11 +149,11 @@ Now we have this which goes once over the array and swaps numbers that are in th
 ```csharp
 int[] arr = [4, 3, 5, 2, 1];
 
-for (int n = 0; n < arr.Length - 1; n++) {
-    if (arr[n] > arr[n + 1]) {
-        int swap = arr[n];
-        arr[n] = arr[n + 1];
-        arr[n + 1] = swap;
+for (int j = 0; j < arr.Length - 1; j++) {
+    if (arr[j] > arr[j + 1]) {
+        int swap = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = swap;
     }
 }
 ```
@@ -162,11 +162,11 @@ We need to keep swapping them as long as there is something to swap. Therefore w
 int[] arr = [4, 3, 5, 2, 1];
 
 for (int i = 0; i < arr.Length; i++) {
-    for (int n = 0; n < arr.Length - 1; n++) {
-        if (arr[n] > arr[n + 1]) {
-            int swap = arr[n];
-            arr[n] = arr[n + 1];
-            arr[n + 1] = swap;
+    for (int j = 0; j < arr.Length - 1; j++) {
+        if (arr[j] > arr[j + 1]) {
+            int swap = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = swap;
         }
     }
 }
