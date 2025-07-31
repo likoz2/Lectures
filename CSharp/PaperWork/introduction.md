@@ -42,7 +42,7 @@ public static void Main(string args[]){ // Main() is the method that is called w
   Water sweetWater = Cook(waterAmount, sugarPacket); // We call a method which is defined bellow
 }
 
-// We expect parametr saying how much water we want and a sugar as an ingredient.
+// We expect parameter saying how much water we want and a sugar as an ingredient.
 // We return the sweetened Water.
 public Water Cook(float waterAmount, SugarPacket sugarPacket){ 
   Water water = new Water(waterAmount);
@@ -51,11 +51,11 @@ public Water Cook(float waterAmount, SugarPacket sugarPacket){
     water.HeatUp();
   }
 
-  while (!water.IsSweet && !sugarPacket.IsEmpty){ // if water is not sweet AND the sugar packet has some sugar left, sweaten the water
+  while (!water.IsSweet && !sugarPacket.IsEmpty){ // if water is not sweet AND the sugar packet has some sugar left, sweeten the water
     water.PutABitOfSugar(sugarPacket);
   }
 
-  return water; // after the cooking, return the water which we have sweetend
+  return water; // after the cooking, return the water which we have sweetened
 }
 ```
 Of course in a real world the universe already said what does it mean when water.IsCold or what water.HeatUp() does. In the program we need to implement that as ourselves.
@@ -249,8 +249,8 @@ There are also many [operators](https://learn.microsoft.com/en-us/dotnet/csharp/
     - For example `a |= b` is equivalent to `a = a | b`
 ## Data Types
 ### Whole Numbers
-Most used variable is ``int``.  When working with big numbers sometimes ``long`` needs to be used.\
-Notice that you can write ``_`` in the number, which is only for readability and is not changing the behavior of the number itself.
+Most used variable is `int`.  When working with big numbers sometimes `long` needs to be used.\
+Notice that you can write `_` in the number, which is only for readability and is not changing the behavior of the number itself.
 ```csharp
 // int (Int32) -> Integer
 // from -2,147,483,648 to 2,147,483,647 (inclusive)
@@ -315,6 +315,20 @@ uint c = 421;
 // ulong (UInt64) -> Unsigned long integer (only positive numbers)
 // from 0 to 18,446,744,073,709,551,615 (inclusive)
 ulong c = 12_123_123_123_123_123_123;
+```
+### Boolean type
+Used for condition checks.
+```csharp
+bool isOkay = true;
+
+int a = 3;
+bool isBiggerThanFive = a > 5;
+
+string text = "Not an empty string";
+string emptyString = "";
+bool isEmptyText = text is null || text == string.Empty;
+bool isEmpty = emptyString is null || emptyString == string.Empty;
+bool isLongEnough = text.Length > 10;
 ```
 ### Array
 An important data type is an array.\
@@ -686,6 +700,23 @@ foreach (int number in arr){
 // 5
 // 6
 ```
+When writing `for` the inner variable is always `i`.\
+When writing a nested `for`, the inner variables are as follows: `i`, `j`, `k`, `l`, `m`, `n`, `o`, `p`
+```csharp
+for (int i = 0; i < length; i++) {
+  for (int j = 0; j < length; j++) {
+    for (int k = 0; k < length; k++) {
+      for (int l = 0; l < length; l++) {
+        for (int m = 0; m < length; m++) {
+          for (int n = 0; n < length; n++) {
+
+          }
+        }
+      }
+    }
+  }
+}
+```
 ### Methods (Functions)
 - used when we need to:
   - give a name to a certain code
@@ -893,3 +924,32 @@ public class NPC : Entity {
 // But also "NPC" inherits from "Entity" which means "Player" can also damage "NPC" as well as "NPC" can damage "Player"
 // Because "Player" inherits "IMessageable", it means we can send a message to a "Player", but we cannot send a message to an "NPC" because an "NPC" doesn't inherit "IMessageable"
 ```
+### Common mistakes, issues and hints
+If you encounter an issue while coding, I can assure you that it is not the last time you are dealing with that exact issue.\
+As a beginner you can write the issues and their solutions somewhere on a paper or into a notepad. It could help you in the near future.\
+It is a good practice to learn from your mistakes as you will do the same mistake multiple times when coding.\
+The good part is that there is finite number of issues you can encounter.
+
+Common mistakes
+- Forgetting `;` at the end of the line. (very common)
+- Not providing closed `}` after opening `{`. (Note that the compiler can say "Missing `;`" instead of "Missing `}`") (very common)
+- Not providing closed ')' after opening '('. (Note that the compiler can say "Missing `;`" instead of "Missing `}`") (common)
+- Coding in late hours when brain wants to sleep and doing weird stuff in the code. (common)
+  - The next morning you will spend hours just rewriting what you wrote the night before. For real, go to sleep.
+- Off-by-one loops. This means that your loop will end too soon or too late as you forget `- 1`. (common)
+- Null handling. Incorrectly initialized value which you work with causes the program to crash. (common)
+- Not closing a file properly (uncommon)
+- Mistaking `i` and `j` in nested `for` loops. (uncommon)
+- Using `arr[1]` instead of `arr[i]` as they look similar. (rare)
+- Not overloading a method properly causing to call a wrong method. (epic)
+- BSOD because of corrupted RAM (legendary)
+- C# breaks and won't work. (mythical)
+  - It is a myth. C# always works. Therefore there is a way to resolve the issue. Keep trying <3.
+
+Hints
+- Read the compiler errors, they always tell you what is wrong. :) (I mean really, many people just overlooks them and starts panicking for some reason)
+- Use debugger, set breakpoints. Very strong tool, don't be scared of it with million of WriteLine statements. :) (Using breakpoints is surely explained on the internet)
+- Draw your ideas on a paper and prepare the solution there. Coding is 60% figuring out how to do things. 38% debugging and resolving issues and 2% writing a code.
+- Do things correctly. If you can start doing things correctly today, don't put them aside for "later" with something like "I will do it like this now and rewrite it correctly later.", you will never get back to it.
+- Code a lot, the more you code the more you will understand it.
+- Explore what certain classes can do.
