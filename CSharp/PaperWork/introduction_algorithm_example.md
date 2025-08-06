@@ -3,6 +3,8 @@ In the introduction you have been introduced to multiple C# features. \
 Now that you know it exists we can build upon that and actually get to coding. \
 There is a lot of theory at the start of C#. But once you grasp on the basics, there is nothing more and everything just behaves the same way.
 
+In the end there are some `Can you:` which gives you a small challenge. So.. Can you? :)
+
 ## Your first app
 In your first app we want to get the computer print some output.
 ```csharp
@@ -17,6 +19,75 @@ public static void Main(string[] args) {
 Okay that ain't much but it's an honest start.
 
 ## Your first algorithm
+Lets create an algorithm that finds the bigger value from 2 given values.
+```csharp
+public static void Main(string[] args) {
+    int a = 3;
+    int b = 2;
+
+    int max = a;
+    if (b > a)
+        max = b;
+
+    Console.WriteLine(max);
+}
+```
+Quick tip: the if can be shortened with ternary operator.
+```csharp
+public static void Main(string[] args) {
+    int a = 3;
+    int b = 2;
+
+    int max = a > b ? a : b;
+
+    Console.WriteLine(max);
+}
+```
+Okay so thats how we get the bigger number, what we did was we basically sorted the two values.
+```csharp
+public static void Main(string[] args) {
+    int a = 3;
+    int b = 2;
+
+    if (a > b) {
+        int swap = a;
+        a = b;
+        b = swap;
+    }
+
+    Console.WriteLine("a: " + a); // prints 2
+    Console.WriteLine("b: " + b); // prints 3
+}
+```
+Lets try to sort 3 values.
+```csharp
+public static void Main(string[] args) {
+    int a = 3;
+    int b = 4;
+    int c = 1;
+
+    if (a > b) {
+        int swap = a;
+        a = b;
+        b = swap;
+    }
+    if (b > c) {
+        int swap = b;
+        b = c;
+        c = swap;
+    }
+    
+    if (a > b) {
+        int swap = a;
+        a = b;
+        b = swap;
+    }
+
+    Console.WriteLine("a: " + a); // prints 1
+    Console.WriteLine("b: " + b); // prints 3
+    Console.WriteLine("c: " + c); // prints 4
+}
+```
 Lets create a sorting algorithm that sorts 4 values.
 ```csharp
 public static void Main(string[] args) {
@@ -70,8 +141,8 @@ You can notice 2 main things. First being how I utilize empty lines. Second how 
   - for example I have a drawing board right next to me and whenever I stumble upon some issue, I draw it on the board
 
 ## Your second algorithm
-Also you can notice that this is too many lines and only works for 4 numbers.\
-So lets create a function that sorts an array.
+Also you can notice that this is too many lines and only works for specified amount of numbers.\
+So lets create a function that sorts an array which can be any length.
 ```csharp
 public static void Main(string[] args) {
     int[] arr = [4, 3, 5, 2, 1];
@@ -92,6 +163,8 @@ public static void Main(string[] args) {
 }
 ```
 This might seem chaotic at first so lets break it down.
+
+Quick tip: The following breakdown actually shows the steps in order which I took to write the algorithm. Its is the simples to create your algs from the inside out, creating first the solution for one or two numbers (depending on the alg) then remaking it into more generic one like to use array or such.
 
 First we randomly by hand create an array.
 ```csharp
@@ -172,11 +245,14 @@ for (int i = 0; i < arr.Length; i++) {
 }
 
 // The reason for repeating the outer for .Length times is that each cycle moves the smallest number to the beginning of the array.
-// So if the smallest number is at the end of the array when the sort starts, it needs .Length iterations to move it to the beginning, therefore sort it to its correct position.
+// So if the smallest number is at the end of the array when the sort starts, it needs .Length iterations to move it to the beginning, simply put: sort it to its correct position.
 // Again, if you find it confusing, use a pen and a paper to figure it out.
 ```
-And there we have it. This algorithm can be optimized and made much faster. In the original code I provided was a part of the optimization which I put aside in this explanation to keep things simple.\
-You can try to come up with optimization features on your own. For example imagine what happens when the array is sorted before we even begin to sort? Or imagine it is sorted after the first iteration. Can you update it so it skips unnecessary computation when its already sorted?
+And there we have it. This algorithm can be optimized and made much faster. In the original code I provided was a part of the optimization which I put aside in this explanation to keep things simple.
+
+Can you: You can try to come up with optimization features on your own. For example imagine what happens when the array is sorted before we even begin to sort? Or imagine it is sorted just after the first iteration. Can you update it so it skips unnecessary computation (ends the sort alg early) when its already sorted? 
+
+Can you: Next thing you can try is to sort the array in a descending order.
 
 This sort is called the `Bubble sort` and is not very effective. Our implementation is just a simple showcase of an actual algorithm.\
 If you ever stumble upon a sorting needs in coding, there is a Library that does it for you. (And is faster than what you would implement most likely.)
@@ -185,3 +261,22 @@ int[] arr = [4, 3, 5, 2, 1];
 Array.Sort(arr);
 ```
 And its done :)
+
+If you want to test your sorter there is a method that generates random array for you.
+```csharp
+public static Random rnd = new Random();
+
+static int[] CreateRandomIntArray(int length, int minValue, int maxValue) {
+    int[] ret = new int[length];
+    for (int i = 0; i < length; i++) {
+        ret[i] = rnd.Next(minValue, maxValue+1); // max is exclusive, to include it I am doing +1
+    }
+
+    return ret;
+}
+
+static void Main(string[] args) {
+    int[] arr = CreateRandomIntArray(10, -10, 10);
+}
+```
+Can you: Create a method that returns the random array with random length which is between bounds (minLength, maxLength) specified as a parameter?
