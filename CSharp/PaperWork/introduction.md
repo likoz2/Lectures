@@ -1,3 +1,15 @@
+# Goal
+The goal of this article is to introduce readers to C#. This article contains every basic feature of the C#. It is not meant to fully explain all the features. It is only meant to show readers what is possible. Later articles will dive deeply in each and every topic mentioned in this article, they will also expect readers to know the basics mentioned in this article as some explanations will involve other features.
+# Sections
+- Basics
+- Variables
+- Understanding the code
+- Errors
+- Final Hints
+# Prerequisites
+- Requisite
+  - README.md (contains general information about this repo and its articles)
+
 # Basics
 - Programming is about automation
   - We don't want to do something -> we tell the computer how to do it automatically
@@ -35,17 +47,17 @@ a sweet water
 ### So in code we do something like this:
 This is advanced and stands only for a reference on how would it look like in an actual code. Please refer to this later as you go thru all the introduction lectures.
 ```csharp
-public static void Main(string args[]){ // Main() is the method that is called when program.exe starts
-  float waterAmount = 1f;
+public static void Main(string[] args){ // Main() is the method that is called when program.exe starts
+  float litresOfWater = 1f;
   SugarPacket sugarPacket = new SugarPacket(); // We create new sugar packet out of nowhere
   
-  Water sweetWater = Cook(waterAmount, sugarPacket); // We call a method which is defined bellow
+  Water sweetWater = Cook(litresOfWater, sugarPacket); // We call a method which is defined bellow
 }
 
 // We expect parameter saying how much water we want and a sugar as an ingredient.
 // We return the sweetened Water.
-public Water Cook(float waterAmount, SugarPacket sugarPacket){ 
-  Water water = new Water(waterAmount);
+public static Water Cook(float litresOfWater, SugarPacket sugarPacket){ 
+  Water water = new Water(litresOfWater);
 
   if (water.IsCold){ // If water is cold, heat it up
     water.HeatUp();
@@ -64,15 +76,15 @@ So:
 // a class that contains information about the water and the function to heat it up or to sweeten it
 public class Water {
   private float temp; // in kelvin
-  private float amountOfWater;
-  private float gramsOfSugar;
+  private float litresOfWater; // in liters
+  private float gramsOfSugar; // in grams
 
   public bool IsCold => temp < 273.15f + 25f; // return true if temp is below 25 °C
-  public bool IsSweet => (gramsOfSugar / (amountOfWater + gramsOfSugar)) > 0.1f; // return true if there is more than 10% of sugar.
+  public bool IsSweet => (gramsOfSugar / (litresOfWater * 1000f + gramsOfSugar)) > 0.1f; // return true if there is more than 10% of sugar.
   // Assume 1 liter of water (1000 milliliters) == 1 kilogram (1000 grams)
 
   public Water(float amount) {
-    this.amountOfWater = amount;
+    this.litresOfWater = amount;
     this.temp = 273.15f + 22f; // a room temperature
   }
 
@@ -104,7 +116,7 @@ public class SugarPacket {
     }
     
     this.gramsOfSugar -= amountToTake; // we subtract the value we are taking, the gramsOfSugar will be 0 if we took what is left
-    return this.amountToTake; // tell the caller how much we took
+    return amountToTake; // tell the caller how much we took
   }
 }
 ```
@@ -480,7 +492,7 @@ char[] chars = ['t', 'a', 'r'];
 ```
 Can be one of two types:
 - simple type (a value) (``struct``)
-- reference type (a reference to a memory where all the values are) (used to pack things up together) (``class``)
+- reference type (a reference to a memory where all the values are) (used to pack things up together) (``Class``)
 ```csharp
 // simple/primitive data types
 int a = 1;
@@ -701,7 +713,8 @@ foreach (int number in arr){
 // 6
 ```
 When writing `for` the inner variable is always `i`.\
-When writing a nested `for`, the inner variables are as follows: `i`, `j`, `k`, `l`, `m`, `n`, `o`, `p`
+When writing a nested `for` the inner variables are as follows: `i`, `j`, `k`, `l`, `m`, `n`, `o`, `p`\
+You should never write more than 3 nested `for`s. If you do so, you are doing something wrong and there is a better way to do it.
 ```csharp
 for (int i = 0; i < length; i++) {
   for (int j = 0; j < length; j++) {
@@ -709,7 +722,7 @@ for (int i = 0; i < length; i++) {
       for (int l = 0; l < length; l++) {
         for (int m = 0; m < length; m++) {
           for (int n = 0; n < length; n++) {
-
+            // ...
           }
         }
       }
@@ -739,7 +752,7 @@ for (int i = 0; i < length; i++) {
   - parameters
     - after name we put `()` in which we specify parameters
     - the Method is not required to use any parameters and can be parameterless `()`
-    - parametr has:
+    - parameter has:
       - data type (which data type the parameter has to be)
       - local name (doesn't need to match the name from where it is called, name of the parameter only applies to the value in the body of this method)
 
@@ -927,13 +940,13 @@ public class NPC : Entity {
 ### Common mistakes, issues and hints
 If you encounter an issue while coding, I can assure you that it is not the last time you are dealing with that exact issue.\
 As a beginner you can write the issues and their solutions somewhere on a paper or into a notepad. It could help you in the near future.\
-It is a good practice to learn from your mistakes as you will do the same mistake multiple times when coding.\
+It is a good practice to learn from your mistakes as you will make the same mistake multiple times when coding.\
 The good part is that there is finite number of issues you can encounter.
 
-Common mistakes
+Common mistakes (just to name a few)
 - Forgetting `;` at the end of the line. (very common)
 - Not providing closed `}` after opening `{`. (Note that the compiler can say "Missing `;`" instead of "Missing `}`") (very common)
-- Not providing closed ')' after opening '('. (Note that the compiler can say "Missing `;`" instead of "Missing `}`") (common)
+- Not providing closed ')' after opening '('. (Note that the compiler can say "Missing `;`" instead of "Missing `)`") (common)
 - Coding in late hours when brain wants to sleep and doing weird stuff in the code. (common)
   - The next morning you will spend hours just rewriting what you wrote the night before. For real, go to sleep.
 - Off-by-one loops. This means that your loop will end too soon or too late as you forget `- 1`. (common)
@@ -945,10 +958,30 @@ Common mistakes
 - BSOD because of corrupted RAM (legendary)
 - C# breaks and won't work. (mythical)
   - It is a myth. C# always works. Therefore there is a way to resolve the issue. Keep trying <3.
+# Errors
+Errors are thrown when a code violates a rule. There are two types of errors: "Compile" and "RunTime".\
+## Compile error
+Compile error is thrown when writing the code. It can be noticed by red underline in most IDEs (Editors). When Compile error is present, the code will not compile.
 
-Hints
+Most common Compile errors:
+- Missing `;`.
+- Missing `)` or `}` after `(` or `{`.
+- Two `Variables`, `Methods` etc.. with the same name in the same context.
+- Trying to access a `private` `Variable` or `Method` etc.. from other `Class`.
+- Missing `Method` return type. Mostly happening at `Methods` that doesn't return anything. `void` should be used there.
+- Missing a using directive or an assembly reference. Mostly forgetting to put "using System.IO;" at the top of the code when using `File` and so on.
+- Missing the return statement in a `Method` which is supposed to return something.
+## Runtime error
+Runtime errors are the one which makes your program "crash" while running. Basically the code "throws" an exception that you have not handled properly leaving the code with no other option then to close itself as it doesn't know how to handle the situation.
+
+Most common Runtime errors:
+- Division by 0.
+- Null pointer exception. Trying to access a value that was not defined yet.
+- Index out of bounds. Trying to access a value on an index in an array, which is out of bounds.
+
+# Final Hints
 - Read the compiler errors, they always tell you what is wrong. :) (I mean really, many people just overlooks them and starts panicking for some reason)
-- Use debugger, set breakpoints. Very strong tool, don't be scared of it with million of WriteLine statements. :) (Using breakpoints is surely explained on the internet)
+- Use debugger, set breakpoints. Very strong tool, don't be scared of it with million of WriteLine statements. :) (Using breakpoints is surely explained somewhere on the internet)
 - Draw your ideas on a paper and prepare the solution there. Coding is 60% figuring out how to do things. 38% debugging and resolving issues and 2% writing a code.
 - Do things correctly. If you can start doing things correctly today, don't put them aside for "later" with something like "I will do it like this now and rewrite it correctly later.", you will never get back to it.
 - Code a lot, the more you code the more you will understand it.
