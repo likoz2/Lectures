@@ -83,7 +83,7 @@ public static Sort(int[] arr) {
 ```
 The name it was given is simple and understandable. You might be thinking whether "SortIntArray" ins't a better name. Simple answer is no, because of the parameter. Lets see a quick example for this question.
 
-When using a parameter, two `Method`s can have the same name. They differ in the type of parameter passed.
+When using a parameter, two `Methods` can have the same name. They differ in the type of parameter passed.
 ```csharp
 public static void Write(int value) {
     Console.Write(value);
@@ -210,7 +210,7 @@ public class MyConsole {
 ### Summarization
 The `Method` should be used because of all of the reasons. More simply to put this: `Method` should not violate any of the reasons and should always help with the code clarity.
 # Static / Non-Static
-Static means that we do not need to create an instance of the class. It is mostly used for the `Methods` which operate only on the parameters they are passed, and don't use any of the classes variables.
+Static means that we do not need to create an instance of the `Class`. It is mostly used for the `Methods` which operate only on the parameters they are passed, and don't use any of the `Classes` variables.
 ```csharp
 public class MyConsole {
     public static SayHello() {
@@ -337,4 +337,13 @@ Another limitation is that operators cannot be implemented using Extensions.
 
 Wrapper is an implementation "design" which "has" (contains) the `Classes` instance and/or implements all the `Properties` and `Methods` as the original `Class` as well as providing a new functionality.
 # Summary
+`Methods` are used to tidy up the code.\
+Always follow these
+- Correct name
+- Correct place
+- Prevent repetition
+
+Do not be scared to use a lot of `Methods`.\
+Do not be scared to use private `Methods`.
+
 The more you will code the better you will use the `Methods`. OOP is the main thing in C#. Design how to use `Classes` and `Methods` correctly is basically most of the C# knowledge.
